@@ -40,6 +40,7 @@ window.onload = function () {
     // Add each promise's result
     results.forEach((res) => {
       const row = document.createElement("tr");
+		row.id="loading";
       row.innerHTML = `<td>${res.name}</td><td>${res.time}</td>`;
       output.appendChild(row);
     });
