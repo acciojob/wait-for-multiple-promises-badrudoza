@@ -13,34 +13,29 @@ window.onload = function () {
     });
   }
 
-  // Get the table body
   const output = document.getElementById("output");
 
-  // Show "Loading..." initially (this is what Cypress checks)
-  output.innerHTML = `<tr><td colspan="2">Loading...</td></tr>`;
+  // ✅ Set proper ID on loading row
+  output.innerHTML = `<tr id="loading"><td colspan="2">Loading...</td></tr>`;
 
-  // Start the timer after loading text is set
   const startAll = Date.now();
 
-  // Create 3 promises
   const promises = [
     createRandomPromise(1),
     createRandomPromise(2),
     createRandomPromise(3),
   ];
 
-  // Wait for all to resolve
   Promise.all(promises).then((results) => {
     const endAll = Date.now();
     const totalTime = ((endAll - startAll) / 1000).toFixed(3);
 
-    // Clear the "Loading..." row
+    // Remove loading row
     output.innerHTML = "";
 
-    // Add each promise's result
+    // Add each resolved promise row
     results.forEach((res) => {
       const row = document.createElement("tr");
-		row.id="loading";
       row.innerHTML = `<td>${res.name}</td><td>${res.time}</td>`;
       output.appendChild(row);
     });
