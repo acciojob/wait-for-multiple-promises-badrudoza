@@ -41,6 +41,7 @@ Promise.all(promises).then((results) => {
   // Add each promise's result to the table
   results.forEach((res) => {
     const row = document.createElement("tr");
+	  row.id="loading";
     row.innerHTML = `<td>${res.name}</td><td>${res.time}</td>`;
     output.appendChild(row);
   });
